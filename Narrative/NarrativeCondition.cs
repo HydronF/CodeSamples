@@ -29,12 +29,14 @@ public class NarrativeConditionList
 
     public void InitializeDictionary() {
         // Rearrange the list into a dictionary. Remember to call it on start!
-        foreach (NarrativeCondition cond in initializationList) {
+        foreach (NarrativeCondition cond in initializationList) 
+        {
             conditionDict.Add(cond.conditionType, cond.argument);
         }
     }
 
-    public void Add(ConditionType conditionType, string argument) {
+    public void Add(ConditionType conditionType, string argument) 
+    {
         if (conditionDict.ContainsKey(conditionType)) {
             // Update the entry
             conditionDict[conditionType] = argument;
@@ -49,28 +51,37 @@ public class NarrativeConditionList
 
     public int Count() {return conditionDict.Count;}
 
-    public bool ConditionMet(NarrativeCondition condition) {
+    public bool ConditionMet(NarrativeCondition condition) 
+    {
         // Returns true if one condition is met (NarrativeCondition)
-        if (!conditionDict.ContainsKey(condition.conditionType)) {
+        if (!conditionDict.ContainsKey(condition.conditionType)) 
+        {
             return false;
         }
-        else {
+        else 
+        {
             return (conditionDict[condition.conditionType] == condition.argument);
         }
     }
-    public bool ConditionMet(KeyValuePair<ConditionType, string> condition) {
+    public bool ConditionMet(KeyValuePair<ConditionType, string> condition) 
+    {
         // Returns true if one condition is met (KeyValuePair)
-        if (!conditionDict.ContainsKey(condition.Key)) {
+        if (!conditionDict.ContainsKey(condition.Key)) 
+        {
             return false;
         }
-        else {
+        else 
+        {
             return (conditionDict[condition.Key] == condition.Value);
         }
     }
-    public bool Satisfiy(NarrativeConditionList otherList) {
+    public bool Satisfiy(NarrativeConditionList otherList) 
+    {
         // Returns true if all conditions in the other list are met
-        foreach (KeyValuePair<ConditionType, string> cond in otherList.GetConditionDict()) {
-            if (!ConditionMet(cond)) {
+        foreach (KeyValuePair<ConditionType, string> cond in otherList.GetConditionDict()) 
+        {
+            if (!ConditionMet(cond)) 
+            {
                 return false;
             }
         }
@@ -79,9 +90,11 @@ public class NarrativeConditionList
 
 }
 
-public class ByConditionCount: IComparer<NarrativeMomentSO> {
+public class ByConditionCount: IComparer<NarrativeMomentSO> 
+{
     NarrativeMomentSO moment1, moment2;
-    public int Compare(NarrativeMomentSO moment1, NarrativeMomentSO moment2) {
+    public int Compare(NarrativeMomentSO moment1, NarrativeMomentSO moment2) 
+    {
        return (moment1.narrativeConditionList.Count() - moment2.narrativeConditionList.Count());
     }
 }
